@@ -1,0 +1,30 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
+pool:
+  vmImage: 'Ubuntu-latest'
+
+steps:
+  - script: |
+      ./docs.sh
+      git config --local user.name "Azure Pipelines"
+      git config --local user.email "tamh@mypinpad.com"
+      git add .
+      git commit -m "Publishing GitHub Pages  ***NO_CI***"
+    displayName: 'Build and commit pages'
+
+  - task: DownloadSecureFile@1
+    name: SecurefileDownload
+    inputs:
+      secureFile: deploy_key_3
+    displayName: 'Get the deploy key'
+
+  - script: |
+      mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_3
+      chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519_3
+      ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+      git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
+      git push origin HEAD:master
+    displayName: 'Publish GitHub Pages'
