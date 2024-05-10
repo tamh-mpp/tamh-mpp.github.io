@@ -15,11 +15,11 @@ steps:
       git commit -m "Publishing GitHub Pages  ***NO_CI***"
     displayName: 'Build and commit pages'
 
-  - task: DownloadSecureFile@1
-    name: SecurefileDownload
-    inputs:
-      secureFile: deploy_key_4
-    displayName: 'Get the deploy key'
+#  - task: DownloadSecureFile@1
+#    name: SecurefileDownload
+#    inputs:
+#      secureFile: deploy_key_2
+#    displayName: 'Get the deploy key'
 
   - script: |
       mkdir ~/.ssh && mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_2
