@@ -18,12 +18,12 @@ steps:
   - task: DownloadSecureFile@1
     name: SecurefileDownload
     inputs:
-      secureFile: deploy_key_3
+      secureFile: deploy_key_2
     displayName: 'Get the deploy key'
 
   - script: |
-      mkdir ~/.ssh && mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519
-      chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519
+      mkdir ~/.ssh && mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_2
+      chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519_2
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
       git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
       git push origin HEAD:master
