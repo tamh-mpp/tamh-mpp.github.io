@@ -15,11 +15,6 @@ steps:
       git commit -m "Publishing GitHub Pages  ***NO_CI***"
     displayName: 'Build and commit pages'
 
-  - task: UseSshKey@0
-    inputs:
-      sshKey: deploy_key_3
-    displayName: 'Get the SSH key'
-
   - task: DownloadSecureFile@1
     name: SecurefileDownload
     inputs:
