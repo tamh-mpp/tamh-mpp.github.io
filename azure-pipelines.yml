@@ -29,8 +29,7 @@ steps:
       echo "$(SecurefileDownload.secureFilePath)"
       chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519_5
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-      ssh-keyscan -t id_ed25519_5 github.com >> ~/.ssh/known_hosts
-      ssh-keyscan -l -f ~/.ssh/known_hosts
+      ssh-keyscan -t id_ed25519 github.com >> ~/.ssh/known_hosts
       git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
       git push origin HEAD:master
     displayName: 'Publish GitHub Pages'
