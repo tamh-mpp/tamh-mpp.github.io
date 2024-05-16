@@ -34,6 +34,6 @@ steps:
       git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
       echo "set url done"
       git remote -v
-      git push origin HEAD:main
+      git push origin HEAD:master
       echo "push done"
     displayName: 'Publish GitHub Pages'
