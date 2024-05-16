@@ -18,15 +18,15 @@ steps:
   - task: DownloadSecureFile@1
     name: SecurefileDownload
     inputs:
-      secureFile: deploy_key_3
+      secureFile: deploy_key_2
     displayName: 'Get the deploy key'
 
   - script: |
       echo "$(SecurefileDownload.secureFilePath)"
       cat "$(SecurefileDownload.secureFilePath)"
-      mkdir ~/.ssh && mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_5
+      mkdir ~/.ssh && mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_22
       echo "mkdir done"
-      sudo chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519_5
+      sudo chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519_22
       echo "$(~/.ssh/id_ed25519_5)"
       cat "$(~/.ssh/id_ed25519_5)"
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
