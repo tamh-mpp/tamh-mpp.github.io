@@ -18,7 +18,7 @@ steps:
   - task: DownloadSecureFile@1
     name: SecurefileDownload
     inputs:
-      secureFile: deploy_key_4
+      secureFile: deploy_key
     displayName: 'Get the deploy key'
 
   - script: |
