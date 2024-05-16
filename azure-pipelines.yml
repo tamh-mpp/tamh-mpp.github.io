@@ -24,10 +24,10 @@ steps:
   - script: |
       echo "$(SecurefileDownload.secureFilePath)"
       cat "$(SecurefileDownload.secureFilePath)"
-      mkdir ~/.ssh && chmod 700 ~/.ssh 
-      mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_5 && chmod 600 ~/.ssh/id_ed25519_5    
-      echo "$(~/.ssh/id_ed25519_5)"
-      cat "$(~/.ssh/id_ed25519_5)"
+      sudo mkdir ~/.ssh && sudo chmod 700 ~/.ssh 
+      sudo mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_5 && sudo chmod 600 ~/.ssh/id_ed25519_5    
+      echo ~/.ssh/id_ed25519_5
+      cat ~/.ssh/id_ed25519_5
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
       git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
       git push origin HEAD:master
