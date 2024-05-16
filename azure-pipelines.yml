@@ -30,6 +30,9 @@ steps:
       echo ~/.ssh/id_ed25519_5
       cat ~/.ssh/id_ed25519_5
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-      git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
-      git push origin HEAD:master
+      sudo git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
+      echo "set url done"
+      git remote -v
+      sudo git push origin HEAD:master
+      echo "push done"
     displayName: 'Publish GitHub Pages'
