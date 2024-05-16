@@ -25,6 +25,8 @@ steps:
       echo "$(SecurefileDownload.secureFilePath)"
       cat "$(SecurefileDownload.secureFilePath)"
       mkdir ~/.ssh && mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_5
+      echo "mkdir done"
+      echo "$(~/.ssh/id_ed25519_5)"
       cat "$(~/.ssh/id_ed25519_5)"
       chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519_5
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
