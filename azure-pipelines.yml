@@ -26,14 +26,14 @@ steps:
       cat "$(SecurefileDownload.secureFilePath)"
       mkdir ~/.ssh && mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519
       echo "mkdir done"
-      sudo chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519
+      chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519
       echo ~/.ssh/id_ed25519
       cat ~/.ssh/id_ed25519
       ssh -vT git@github.com
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-      sudo git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
+      git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
       echo "set url done"
       git remote -v
-      sudo git push origin HEAD:master
+      git push origin HEAD:main
       echo "push done"
     displayName: 'Publish GitHub Pages'
