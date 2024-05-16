@@ -12,19 +12,25 @@ steps:
       git config --local user.name "Azure Pipelines"
       git config --local user.email "tamh@mypinpad.com"
       git add .
-      git commit -m "Publishing GitHub Pages  ***NO_CI***"
+      git commit -m "Publishing GitHub Pages 5  ***NO_CI***"
     displayName: 'Build and commit pages'
 
-#  - task: DownloadSecureFile@1
-#    name: SecurefileDownload
-#    inputs:
-#      secureFile: deploy_key_2
-#    displayName: 'Get the deploy key'
+  - task: DownloadSecureFile@1
+    name: SecurefileDownload
+    inputs:
+      secureFile: deploy_key_3
+    displayName: 'Get the deploy key'
 
   - script: |
-      mkdir ~/.ssh && mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_2
-      chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519_2
+      echo "$(SecurefileDownload.secureFilePath)"
+      cat "$(SecurefileDownload.secureFilePath)"
+      echo "$<(SecurefileDownload.secureFilePath)"
+      mkdir ~/.ssh && mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_5
+      echo "$(SecurefileDownload.secureFilePath)"
+      chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519_5
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+      ssh-keyscan -t id_ed25519_5 github.com >> ~/.ssh/known_hosts
+      ssh-keyscan -l -f ~/.ssh/known_hosts
       git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
       git push origin HEAD:master
     displayName: 'Publish GitHub Pages'
