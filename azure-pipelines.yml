@@ -18,18 +18,17 @@ steps:
   - task: DownloadSecureFile@1
     name: SecurefileDownload
     inputs:
-      secureFile: deploy_key_2
+      secureFile: deploy_key_3
     displayName: 'Get the deploy key'
 
   - script: |
       echo "$(SecurefileDownload.secureFilePath)"
       cat "$(SecurefileDownload.secureFilePath)"
-      mkdir ~/.ssh && mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_22
-      echo "mkdir done"
-      sudo chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519_22
+      mkdir ~/.ssh && chmod 700 ~/.ssh 
+      mv $(SecurefileDownload.secureFilePath) ~/.ssh/id_ed25519_5 && chmod 600 ~/.ssh/id_ed25519_5    
       echo "$(~/.ssh/id_ed25519_5)"
       cat "$(~/.ssh/id_ed25519_5)"
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-      sudo git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
-      sudo git push origin HEAD:master
+      git remote set-url --push origin git@github.com:tamh-mpp/tamh-mpp.github.io.git
+      git push origin HEAD:master
     displayName: 'Publish GitHub Pages'
